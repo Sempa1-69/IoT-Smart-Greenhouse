@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Analytics — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="analytics">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Smart Analytics</h1>
+            <p>Risk Score, тренды, резкие изменения и рекомендации: что произошло → почему важно → что сделать</p>
+          </div>
+        </div>
+
+        <section class="kpi-grid" id="anaKpi"></section>
+
+        <section class="grid-3" id="riskCards"></section>
+
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Risk Score по зонам</h2><span>0–100</span></div>
+            <div class="chart-box"><canvas id="riskChart" aria-label="Risk Score по зонам"></canvas></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>CO₂</h2><span>ppm, по зонам</span></div>
+            <div class="chart-box"><canvas id="co2Chart" aria-label="График CO2"></canvas></div>
+          </section>
+        </div>
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Освещённость</h2><span>lux, с учётом фитоламп</span></div>
+            <div class="chart-box"><canvas id="lightChart" aria-label="График освещённости"></canvas></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>Тревоги по причинам</h2><span>за всё время</span></div>
+            <div class="chart-box"><canvas id="alertTypeChart" aria-label="Тревоги по причинам"></canvas></div>
+          </section>
+        </div>
+
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Тренды за последний час</h2><span>среднее 4 последних замеров против 4 предыдущих</span></div>
+            <div class="table-wrap"><table>
+              <thead><tr><th>Зона</th><th>Темп.</th><th>Влажн.</th><th>Почва</th><th>CO₂</th><th>Вода</th></tr></thead>
+              <tbody id="trendBody"></tbody>
+            </table></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>Резкие изменения</h2><span>изменение ≥ 30% за один замер</span></div>
+            <div class="list" id="suddenList"></div>
+          </section>
+        </div>
+
+        <section class="card">
+          <div class="card-head"><h2>Как считается Risk Score</h2></div>
+          <div class="formula">risk = 0
++25  температура выше max      +20  температура ниже min
++25  почва суше min            +30  вода ≤ critical
++15  CO₂ выше 1500 ppm         +10  влажность вне диапазона
++10  за каждый датчик offline  →  итог ограничен 100
+0–29 низкий · 30–59 средний · 60–100 высокий</div>
+          <p class="muted" style="margin:10px 0 0;font-size:13px">Рекомендации построены на правилах и пороговых значениях из «Настроек». Они помогают оператору, но не заменяют агронома: правила не учитывают сорт, фазу роста, болезни и состояние субстрата.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/analytics.js"></script>
+</body>
+</html>

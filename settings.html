@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Настройки — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="settings">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Настройки</h1>
+            <p>Пороговые значения зон, симуляция, оформление и данные</p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Пороги зоны</h2><select class="field" id="thrZone" aria-label="Зона" style="padding:6px 10px"></select></div>
+            <form id="thrForm" class="form-grid" novalidate>
+              <div class="form-section">Температура, °C</div>
+              <label class="lbl">min<input class="field" type="number" step="0.5" name="tMin" required></label>
+              <label class="lbl">max<input class="field" type="number" step="0.5" name="tMax" required></label>
+              <div class="form-section">Влажность воздуха, %</div>
+              <label class="lbl">min<input class="field" type="number" step="1" name="hMin" required></label>
+              <label class="lbl">max<input class="field" type="number" step="1" name="hMax" required></label>
+              <div class="form-section">Влажность почвы, %</div>
+              <label class="lbl">min (включить полив)<input class="field" type="number" step="1" name="sMin" required></label>
+              <label class="lbl">max<input class="field" type="number" step="1" name="sMax" required></label>
+              <div class="form-section">Свет, CO₂, вода</div>
+              <label class="lbl">Освещённость min, lux<input class="field" type="number" step="500" name="lMin" required></label>
+              <label class="lbl">CO₂ max, ppm<input class="field" type="number" step="50" name="cMax" required></label>
+              <label class="lbl">Вода critical, %<input class="field" type="number" step="1" name="wCrit" required></label>
+              <div class="full">
+                <div class="error-text" id="thrError" role="alert"></div>
+                <div class="head-actions">
+                  <button class="btn" type="submit">Сохранить пороги</button>
+                  <button class="btn ghost" type="button" id="thrDefault">Значения по умолчанию</button>
+                </div>
+              </div>
+            </form>
+            <p class="muted" style="font-size:13px;margin:12px 0 0">Значения учебные, а не агрономические нормы: реальные зависят от культуры, фазы роста и оборудования.</p>
+          </section>
+
+          <div class="stack" style="align-content:start">
+            <section class="card">
+              <div class="card-head"><h2>Теплица и симуляция</h2></div>
+              <form id="appForm" class="form-grid" novalidate>
+                <label class="lbl full">Название теплицы<input class="field" name="greenhouseName" maxlength="50" required></label>
+                <label class="lbl">Симуляция<select class="field" name="autoSimulate"><option value="true">Работает</option><option value="false">Пауза</option></select></label>
+                <label class="lbl">Интервал, секунд (3–10)<input class="field" type="number" min="3" max="10" step="1" name="interval" required></label>
+                <div class="full">
+                  <div class="error-text" id="appError" role="alert"></div>
+                  <button class="btn" type="submit">Сохранить</button>
+                </div>
+              </form>
+            </section>
+
+            <section class="card">
+              <div class="card-head"><h2>Оформление</h2></div>
+              <div class="toggle-row">
+                <div class="toggle-label"><span>Тема интерфейса<small>сохраняется в localStorage</small></span></div>
+                <div class="segmented" role="group" aria-label="Тема">
+                  <button type="button" data-theme="dark">Тёмная</button>
+                  <button type="button" data-theme="light">Светлая</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="card">
+              <div class="card-head"><h2>Данные</h2><span id="storageInfo"></span></div>
+              <div class="toggle-row">
+                <div class="toggle-label"><span>Сбросить данные<small>зоны, датчики, тревоги, журнал и пороги вернутся к исходным</small></span></div>
+                <button class="btn danger" type="button" id="resetBtn">Сбросить</button>
+              </div>
+              <div class="toggle-row">
+                <div class="toggle-label"><span>Сменить оператора<small>выход на стартовый экран</small></span></div>
+                <button class="btn ghost" type="button" id="settingsLogout">Выйти</button>
+              </div>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/settings.js"></script>
+</body>
+</html>

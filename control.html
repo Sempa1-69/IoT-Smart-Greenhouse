@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Управление — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="control">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Управление устройствами</h1>
+            <p>AUTO — устройствами управляет автоматика, MANUAL — оператор. Насос не включится при низком уровне воды.</p>
+          </div>
+          <div class="head-actions">
+            <button class="btn ghost" id="allAuto" type="button">Все зоны → AUTO</button>
+            <button class="btn ghost" id="allManual" type="button">Все зоны → MANUAL</button>
+          </div>
+        </div>
+
+        <section class="grid-3" id="controlGrid"></section>
+
+        <section class="card">
+          <div class="card-head"><h2>Тестовые сценарии</h2><span>для проверки автоматики на защите</span></div>
+          <p class="muted" style="margin:0 0 12px">Сценарий мгновенно создаёт нужное условие в выбранной зоне. В режиме AUTO автоматика сразу на него реагирует — результат виден в карточке зоны выше и в журнале событий.</p>
+          <div class="toolbar" style="margin:0">
+            <select class="field" id="scenarioZone" aria-label="Зона для сценария"></select>
+            <select class="field" id="scenarioName" aria-label="Сценарий"></select>
+            <button class="btn" id="scenarioRun" type="button">Применить сценарий</button>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/control.js"></script>
+</body>
+</html>

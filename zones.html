@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Зоны — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="zones">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Зоны теплицы</h1>
+            <p>Подробные показатели каждой зоны относительно заданных порогов</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <label class="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input type="search" id="zoneSearch" placeholder="Поиск зоны: томаты, ZONE-02…" aria-label="Поиск зоны"></label>
+          <select class="field" id="riskFilter" aria-label="Уровень риска">
+            <option value="">Любой риск</option>
+            <option value="low">Низкий</option>
+            <option value="medium">Средний</option>
+            <option value="high">Высокий</option>
+          </select>
+          <select class="field" id="modeFilter" aria-label="Режим">
+            <option value="">AUTO и MANUAL</option>
+            <option value="auto">AUTO</option>
+            <option value="manual">MANUAL</option>
+          </select>
+          <span class="result-count" id="zoneCount"></span>
+        </div>
+
+        <section class="grid-3" id="zoneList"></section>
+
+        <dialog class="modal" id="zoneModal" aria-labelledby="zoneModalTitle">
+          <form id="zoneForm" novalidate>
+            <div class="modal-head"><h2 id="zoneModalTitle">Редактировать зону</h2></div>
+            <div class="modal-body">
+              <div class="form-grid">
+                <label class="lbl full">Название зоны
+                  <input class="field" name="zoneName" maxlength="30" required>
+                </label>
+                <label class="lbl full">Культура (англ., для отчётов)
+                  <input class="field" name="crop" maxlength="30" required>
+                </label>
+              </div>
+              <div class="error-text" id="zoneError" role="alert"></div>
+            </div>
+            <div class="modal-foot">
+              <button class="btn ghost" type="button" id="zoneCancel">Отмена</button>
+              <button class="btn" type="submit">Сохранить</button>
+            </div>
+          </form>
+        </dialog>
+      </main>
+    </div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/zones.js"></script>
+</body>
+</html>

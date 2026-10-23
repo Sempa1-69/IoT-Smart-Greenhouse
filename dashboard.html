@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="dashboard">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Обзор теплицы</h1>
+            <p id="dashLine">Состояние теплицы в реальном времени</p>
+          </div>
+          <div class="head-actions">
+            <button class="btn ghost" id="stepBtn" type="button">Шаг симуляции</button>
+          </div>
+        </div>
+
+        <section class="kpi-grid" id="kpiGrid" aria-label="Ключевые показатели"></section>
+
+        <section class="grid-3" id="zoneCards" aria-label="Зоны теплицы"></section>
+
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Температура воздуха</h2><span>°C, по зонам</span></div>
+            <div class="chart-box"><canvas id="tempChart" aria-label="График температуры"></canvas></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>Влажность воздуха</h2><span>%, по зонам</span></div>
+            <div class="chart-box"><canvas id="humChart" aria-label="График влажности воздуха"></canvas></div>
+          </section>
+        </div>
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Влажность почвы</h2><span>%, по зонам</span></div>
+            <div class="chart-box"><canvas id="soilChart" aria-label="График влажности почвы"></canvas></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>Вода в баках и риск</h2><span>уровень воды и риск по зонам</span></div>
+            <div class="chart-box"><canvas id="waterChart" aria-label="Уровень воды и риск"></canvas></div>
+          </section>
+        </div>
+
+        <div class="grid-2">
+          <section class="card">
+            <div class="card-head"><h2>Активные тревоги</h2><a href="alerts.html">Все →</a></div>
+            <div class="list" id="alertList"></div>
+          </section>
+          <section class="card">
+            <div class="card-head"><h2>Последние события</h2><a href="alerts.html#events">Журнал →</a></div>
+            <div class="list" id="eventList"></div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

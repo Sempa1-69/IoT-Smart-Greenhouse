@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="author" content="Раимжанов Я.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Датчики — GrowLab · IoT Smart Greenhouse</title>
+  <script>try { if (JSON.parse(localStorage.getItem("gs_theme")) === "dark") document.documentElement.classList.add("dark"); } catch (e) {}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="sensors">
+  <div class="app">
+    <header class="navbar" id="sidebar"></header>
+    <div class="main">
+      <div class="topbar" id="topbar"></div>
+      <main class="content">
+        <div class="page-head">
+          <div>
+            <h1>Датчики</h1>
+            <p>Все IoT-датчики теплицы: значение, зона, статус связи и время обновления</p>
+          </div>
+        </div>
+
+        <section class="kpi-grid" id="sensorKpi"></section>
+
+        <div class="toolbar">
+          <label class="search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input type="search" id="sensorSearch" placeholder="Поиск: TEMP-Z1, soil…" aria-label="Поиск датчика"></label>
+          <select class="field" id="zoneFilter" aria-label="Зона"><option value="">Все зоны</option></select>
+          <select class="field" id="typeFilter" aria-label="Тип"><option value="">Все типы</option></select>
+          <select class="field" id="statusFilter" aria-label="Статус">
+            <option value="">Online и Offline</option>
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+          </select>
+          <span class="result-count" id="sensorCount"></span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Sensor ID</th><th>Зона</th><th>Тип</th><th>Значение</th><th>Норма</th><th>Статус</th><th>Обновлён</th><th>Действие</th></tr></thead>
+            <tbody id="sensorBody"></tbody>
+          </table>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/storage.js"></script>
+  <script src="assets/js/automation.js"></script>
+  <script src="assets/js/insights.js"></script>
+  <script src="assets/js/simulator.js"></script>
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/sensors.js"></script>
+</body>
+</html>
